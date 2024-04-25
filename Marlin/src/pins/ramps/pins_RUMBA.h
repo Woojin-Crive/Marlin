@@ -48,25 +48,25 @@
 // Limit Switches
 //
 #ifndef X_MIN_PIN
-  #define X_MIN_PIN                           37
+  #define X_MIN_PIN                           -1
 #endif
 #ifndef X_MIN_PIN
   #define X_MIN_PIN                           37
 #endif
 #ifndef X_MAX_PIN
-  #define X_MAX_PIN                           36
+  #define X_MAX_PIN                           32
 #endif
 #ifndef Y_MIN_PIN
-  #define Y_MIN_PIN                           35
+  #define Y_MIN_PIN                           -1
 #endif
 #ifndef Y_MAX_PIN
-  #define Y_MAX_PIN                           34
+  #define Y_MAX_PIN                           36
 #endif
 #ifndef Z_MIN_PIN
   #define Z_MIN_PIN                           33
 #endif
 #ifndef Z_MAX_PIN
-  #define Z_MAX_PIN                           32
+  #define Z_MAX_PIN                           34
 #endif
 
 //
@@ -79,17 +79,17 @@
 //
 // Steppers
 //
-#define X_STEP_PIN                            17
-#define X_DIR_PIN                             16
-#define X_ENABLE_PIN                          48
+#define X_STEP_PIN                            57
+#define X_DIR_PIN                             56
+#define X_ENABLE_PIN                          62
 
-#define Y_STEP_PIN                            54
-#define Y_DIR_PIN                             47
-#define Y_ENABLE_PIN                          55
+#define Y_STEP_PIN                            17
+#define Y_DIR_PIN                             16
+#define Y_ENABLE_PIN                          48
 
-#define Z_STEP_PIN                            57
-#define Z_DIR_PIN                             56
-#define Z_ENABLE_PIN                          62
+#define Z_STEP_PIN                            54
+#define Z_DIR_PIN                             47
+#define Z_ENABLE_PIN                          55
 
 #ifndef E0_STEP_PIN
   #define E0_STEP_PIN                         23
@@ -157,10 +157,10 @@
 #define HEATER_BED_PIN                         9
 
 #ifndef FAN_PIN
-  #define FAN_PIN                              7
+  #define FAN_PIN                              -1// 7
 #endif
 #ifndef FAN1_PIN
-  #define FAN1_PIN                             8
+  #define FAN1_PIN                             -1// 8
 #endif
 
 //
@@ -168,11 +168,20 @@
 //
 #define LED_PIN                               13
 #define PS_ON_PIN                             45
-#define KILL_PIN                              46
+#define KILL_PIN                              -1
 
 #ifndef CASE_LIGHT_PIN
   #define CASE_LIGHT_PIN                      45
 #endif
+
+// added for OLED
+#define LCD_PINS_RW        46
+
+#define LED_R       6// old version(none pwm) pin is 21
+#define LED_G       8// old version(none pwm) pin is 20
+#define LED_B       4
+#define LED_R_NONE_PWM 21
+#define LED_G_NONE_PWM 20
 
 //
 // M3/M4/M5 - Spindle/Laser Control

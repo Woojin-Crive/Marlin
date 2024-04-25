@@ -101,6 +101,10 @@
 
   LCD_CLASS lcd(YHCB2004_CLK, 20, 4, YHCB2004_MOSI, YHCB2004_MISO); // CLK, cols, rows, MOSI, MISO
 
+#elif ENABLED(OLED)
+
+  LCD_CLASS lcd(OLED_V2, LCD_PINS_RS, LCD_PINS_RW, LCD_PINS_ENABLE, LCD_PINS_D4, LCD_PINS_D5,LCD_PINS_D6,LCD_PINS_D7);  //RS,Enable,D4,D5,D6,D7
+
 #else
 
   // Standard direct-connected LCD implementations
@@ -372,6 +376,13 @@ void MarlinUI::init_lcd() {
   #endif
 
   set_custom_characters(on_status_screen() ? CHARSET_INFO : CHARSET_MENU);
+
+  #ifdef LED_STRIP
+    // setup LED Strip
+    pinMode(LED_R, OUTPUT);
+    pinMode(LED_G, OUTPUT);
+    pinMode(LED_B, OUTPUT);
+  #endif    // LED_STRIP
 
   lcd.clear();
 }

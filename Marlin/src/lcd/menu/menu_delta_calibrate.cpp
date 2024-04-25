@@ -48,11 +48,14 @@
 void _man_probe_pt(const xy_pos_t &xy) {
   if (!ui.wait_for_move) {
     ui.wait_for_move = true;
-    do_blocking_move_to_xy_z(xy, Z_CLEARANCE_BETWEEN_PROBES);
+    // do_blocking_move_to_xy_z(xy, Z_CLEARANCE_BETWEEN_PROBES);
+    do_z_clearance(Z_CLEARANCE_BETWEEN_PROBES, false);
+    do_blocking_move_to_xy_z(xy, 0.0);
     ui.wait_for_move = false;
     ui.synchronize();
-    ui.manual_move.menu_scale = _MAX(PROBE_MANUALLY_STEP, MIN_STEPS_PER_SEGMENT / planner.settings.axis_steps_per_mm[0]); // Use first axis as for delta XYZ should always match
-    ui.goto_screen([]{ lcd_move_axis(Z_AXIS); });
+    ui.goto_previous_screen_no_defer();
+    // ui.manual_move.menu_scale = _MAX(PROBE_MANUALLY_STEP, MIN_STEPS_PER_SEGMENT / planner.settings.axis_steps_per_mm[0]); // Use first axis as for delta XYZ should always match
+    // ui.goto_screen([]{ lcd_move_axis(Z_AXIS); });
   }
 }
 
@@ -98,9 +101,9 @@ void _man_probe_pt(const xy_pos_t &xy) {
     xy_pos_t tower_vec = { cos(RADIANS(a)), sin(RADIANS(a)) };
     _man_probe_pt(tower_vec * dcr);
   }
-  void _goto_tower_x() { _goto_tower_a(210); }
-  void _goto_tower_y() { _goto_tower_a(330); }
-  void _goto_tower_z() { _goto_tower_a( 90); }
+  void _goto_tower_x() { _goto_tower_a(150); }
+  void _goto_tower_y() { _goto_tower_a(270); }
+  void _goto_tower_z() { _goto_tower_a( 30); }
   void _goto_center()  { xy_pos_t ctr{0}; _man_probe_pt(ctr); }
 
 #endif

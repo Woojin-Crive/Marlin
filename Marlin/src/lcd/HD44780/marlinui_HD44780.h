@@ -75,6 +75,10 @@
   #include <LiquidCrystal_SR.h>
   #define LCD_CLASS LiquidCrystal_SR
 
+#elif defined(OLED)  
+  #include "Adafruit_CharacterOLED.h"
+  #define LCD_CLASS Adafruit_CharacterOLED
+
 #elif ENABLED(SR_LCD_3W_NL)
 
   // NewLiquidCrystal didn't work, so this uses
